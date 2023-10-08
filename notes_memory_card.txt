@@ -1,0 +1,74 @@
+---------------------------------------------
+checking memory card(s)...
+---------------------------------------------
+
+
+---------------------------------------------
+no game save block was found... create one?
+yes
+no
+
+^v-select   o-accept
+---------------------------------------------
+
+---------------------------------------------
+which card would you like to use?
+ memory card slot 1
+ memory card slot 2
+
+
+^v-select   o-accept
+---------------------------------------------
+
+
+---------------------------------------------
+creating xxx save block... do not remove
+the card or turn off the console.
+---------------------------------------------
+
+---------------------------------------------
+save block created successfully!
+---------------------------------------------
+
+
+-> resume game
+-> restart level
+-> options
+-> quit game
+
+
+options:
+
+-> music volume
+-> sound volume
+-> create save block
+-> save settings
+
+
+
+
+
+
+
+
+---------------------------------------- MENU OPTIONS 
+
+---------------------------
+start game
+options
+credits
+---------------------------
+o-confirm x-cancel
+
+
+options
+-------
+---------------------------
+music volume
+sound effects volume
+
+create save block
+
+save changes
+---------------------------
+o-confirm x-cancel

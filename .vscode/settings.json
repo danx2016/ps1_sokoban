@@ -1,0 +1,25 @@
+{
+    "files.associations": {
+        "malloc.h": "c",
+        "libgpu.h": "c",
+        "mem.h": "c",
+        "cstdint": "c",
+        "libapi.h": "c",
+        "libetc.h": "c",
+        "kernel.h": "c",
+        "asm.h": "c",
+        "sokoban.h": "c",
+        "input.h": "c",
+        "stdio.h": "c",
+        "gfx.h": "c",
+        "scene_title.h": "c",
+        "scene.h": "c",
+        "stdbool.h": "c",
+        "rand.h": "c",
+        "scene_level.h": "c",
+        "menu.h": "c",
+        "game.h": "c",
+        "string.h": "c",
+        "strings.h": "c"
+    }
+}

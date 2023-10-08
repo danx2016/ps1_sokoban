@@ -2,7 +2,25 @@
 TARGET = ps1_sokoban
 TYPE = ps-exe
 
-SRCS = third_party/nugget/common/crt0/crt0.s main.c
+SRCS = third_party/nugget/common/crt0/crt0.s \
+main.c \
+mem.c \
+res.c \
+gfx.c \
+mem_card.c \
+input.c \
+audio.c \
+third_party/nugget/modplayer/modplayer.c \
+sokoban.c \
+scene.c \
+scene_init.c \
+scene_title.c \
+scene_levels.c \
+scene_all_cleared.c \
+scene_credits.c \
+scene_level.c \
+menu.c \
+game.c \
 
 CPPFLAGS += -Ithird_party/psyq-iwyu/include
 LDFLAGS += -Lthird_party/psyq/lib
