@@ -11,6 +11,8 @@
 #define SOUND_ID_SELECT     10
 #define SOUND_ID_START      11
 
+#define MUSICS_NUM                  8
+
 #define MUSIC_ID_TITLE              1
 #define MUSIC_ID_PLAYING            2
 #define MUSIC_ID_LEVEL_CLEARED      3
@@ -20,11 +22,12 @@
 extern int32_t audio_music_volume;
 extern int32_t audio_sfx_volume;
 
-extern void audio_init();
+extern void audio_init(void);
+extern void audio_add_music(size_t music_id, uint8_t *music_data);
 extern void audio_play_music(uint8_t music_id);
-extern void audio_stop_music();
-extern void audio_pause_music();
-extern void audio_resume_music();
+extern void audio_stop_music(void);
+extern void audio_pause_music(void);
+extern void audio_resume_music(void);
 
 extern void audio_play_sound(uint8_t sound_id);
 

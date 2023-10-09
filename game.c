@@ -128,18 +128,38 @@ void game_start_level()
     }
 }
 
+static void load_audio_resources()
+{
+    // load all musics & sound effects
+    uint8_t *music_title_data = res_load(GAME_MUSIC_TITLE);
+    audio_add_music(MUSIC_ID_TITLE, music_title_data);
+
+    uint8_t *music_playing_data = res_load(GAME_MUSIC_PLAYING);
+    audio_add_music(MUSIC_ID_PLAYING, music_playing_data);
+
+    uint8_t *music_victory_data = res_load(GAME_MUSIC_VICTORY);
+    audio_add_music(MUSIC_ID_LEVEL_CLEARED, music_victory_data);
+    
+    uint8_t *music_all_cleared_data = res_load(GAME_MUSIC_ALL_CLEARED);
+    audio_add_music(MUSIC_ID_ALL_LEVELS_CLEARED, music_all_cleared_data);   
+}
+
 static void init_all()
 {
     mem_init();
     res_init();
     gfx_init();
     input_init();
+
+    // note: loading musics after audio_init() does not work, not sure why :(
+    load_audio_resources();
     audio_init();
+        
     mem_card_init();
     game_init();
 }
 
-static void load_all_resources()
+static void load_all_images()
 {
     GFX_TIM_Info *title = res_load_tim_image(GAME_RES_TITLE_IMAGE);
     gfx_add_tileset(0, title, 1, 1);
@@ -204,7 +224,7 @@ static void init_all_scenes()
 void game_entry_point()
 {
     init_all();
-    load_all_resources();
+    load_all_images();
     init_all_scenes();
 
     // start game with title scene

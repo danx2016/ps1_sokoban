@@ -7,5 +7,7 @@
 *.o
 *.a
 *.dat
+*.bin
+*.cue
 PSX.Dev-README.md
 third_party/psyq

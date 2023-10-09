@@ -16,6 +16,12 @@
 #define GAME_FONT_CHARSET " 1234567890-`!``````````={}``|\\'`\"`<,>.?/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz``````````@`````````````````````````#$%`````````^&*`````````()_```````+:;[]   "
 #define GAME_FONT_BOX_BORDER_CHARS "#$%^&*()_"
 
+#define GAME_MUSIC_TITLE "\\ASSETS\\MUSICS\\FREEOST1.HIT;1"
+#define GAME_MUSIC_PLAYING "\\ASSETS\\MUSICS\\FREEOST2.HIT;1"   
+#define GAME_MUSIC_VICTORY "\\ASSETS\\MUSICS\\RAD_VICT.HIT;1"   
+#define GAME_MUSIC_ALL_CLEARED "\\ASSETS\\MUSICS\\PEPPY.HIT;1"   
+
+
 extern Menu *game_options_menu;
 
 extern void game_init();

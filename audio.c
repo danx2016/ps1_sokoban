@@ -4,10 +4,13 @@
 
 #include "res.h"
 #include "audio.h"
+#include "game.h"
 #include "third_party/nugget/modplayer/modplayer.h"
 
 int32_t audio_music_volume = 5;
 int32_t audio_sfx_volume = 5;
+
+static uint8_t *musics_data[MUSICS_NUM];
 
 static uint32_t current_music_id = -1;
 
@@ -45,20 +48,9 @@ int32_t audio_play_next_sample()
     return 1;
 }
 
-// mod title music data
-static uint8_t *_binary_assets_musics_music_hit_start;
-static uint8_t *_binary_assets_musics_music2_hit_start;
-static uint8_t *_binary_assets_musics_music3_hit_start;
-static uint8_t *_binary_assets_musics_music4_hit_start;
-
 void audio_init()
 {
     MOD_Silence();
-
-    _binary_assets_musics_music_hit_start = res_load("\\ASSETS\\MUSICS\\FREEOST1.HIT;1");   
-    _binary_assets_musics_music2_hit_start = res_load("\\ASSETS\\MUSICS\\FREEOST2.HIT;1");   
-    _binary_assets_musics_music3_hit_start = res_load("\\ASSETS\\MUSICS\\RAD_VICT.HIT;1");   
-    _binary_assets_musics_music4_hit_start = res_load("\\ASSETS\\MUSICS\\PEPPY.HIT;1");   
 
     is_music_paused = true;
     is_music_stopped = true;
@@ -73,7 +65,12 @@ void audio_init()
     StartRCnt(RCntCNT2);
 
     audio_set_music_volume(2);
-    audio_set_sfx_volume(9);
+    audio_set_sfx_volume(9); 
+}
+
+void audio_add_music(size_t music_id, uint8_t *music_data)
+{
+    musics_data[music_id] = music_data;
 }
 
 void audio_stop_music()
@@ -108,24 +105,7 @@ void audio_play_music(uint8_t music_id)
     is_music_paused = false;
     is_music_stopped = false;
 
-    switch (music_id)
-    {
-        case MUSIC_ID_TITLE:
-            MOD_Load((struct MODFileFormat*) _binary_assets_musics_music_hit_start);
-            break;
-
-        case MUSIC_ID_PLAYING:
-            MOD_Load((struct MODFileFormat*) _binary_assets_musics_music2_hit_start);
-            break;
-
-        case MUSIC_ID_LEVEL_CLEARED:
-            MOD_Load((struct MODFileFormat*) _binary_assets_musics_music3_hit_start);
-            break;
-
-        case MUSIC_ID_ALL_LEVELS_CLEARED:
-            MOD_Load((struct MODFileFormat*) _binary_assets_musics_music4_hit_start);
-            break;
-    }
+    MOD_Load((struct MODFileFormat*) musics_data[music_id]);
 }
 
 void audio_play_sound(uint8_t sound_id)
