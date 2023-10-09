@@ -103,9 +103,14 @@ void audio_play_music(uint8_t music_id)
     current_music_id = music_id;
 
     is_music_paused = false;
-    is_music_stopped = false;
+
+    // avoid call MOD_Poll() while changing music data,
+    // otherwise it will apparently crash
+    is_music_stopped = true;
 
     MOD_Load((struct MODFileFormat*) musics_data[music_id]);
+
+    is_music_stopped = false;
 }
 
 void audio_play_sound(uint8_t sound_id)
