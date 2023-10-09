@@ -35,7 +35,7 @@ Menu *menu_create(int32_t x, int32_t y, uint32_t cols, uint32_t rows, uint8_t *h
     return menu;
 }
 
-void menu_clear()
+void menu_clear(void)
 {
     for (uint32_t i = 0; i < MENU_MAX_NUM; i++)
     {
@@ -57,7 +57,7 @@ void menu_push(Menu *menu)
     menu->font_y = menu->y + (box_total_h - font_total_h) / 2;
 }
 
-void menu_pop()
+void menu_pop(void)
 {
     menus_stack_index--;
     menus_stack[menus_stack_index] = NULL;

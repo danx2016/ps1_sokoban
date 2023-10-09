@@ -30,9 +30,9 @@ extern Menu *menu_current;
 
 extern Menu *menu_create(int32_t x, int32_t y, uint32_t cols, uint32_t rows, uint8_t *header, uint8_t *footer, void (*on_option_selected)(uint32_t selected_item), void (*fixed_update)(void), size_t num_options, uint8_t *menu_options[]);
 
-extern void menu_clear();
+extern void menu_clear(void);
 extern void menu_push(Menu *menu);
-extern void menu_pop();
+extern void menu_pop(void);
 
 extern void menu_fixed_update(void);
 extern void menu_render(void);
