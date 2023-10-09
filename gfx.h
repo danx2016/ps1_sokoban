@@ -26,13 +26,12 @@ extern void gfx_use_tileset(size_t tileset_id);
 extern void gfx_draw_tile(size_t tile_id, uint32_t x, uint32_t y);
 
 extern void gfx_set_font(GFX_TIM_Info *font, uint8_t cols, uint8_t rows, uint8_t width, uint8_t height, uint8_t* charset);
-extern void gfx_use_font();
+extern void gfx_use_font(void);
 extern void gfx_draw_text(uint8_t* text, int16_t x, int16_t y);
 extern void gfx_draw_text_rgb(uint8_t* text, int16_t x, int16_t y, int8_t r, int8_t g, int8_t b);
 
 // ab -> 0=none, 1=sub (only sub alpha blending mode is supported for now)
 extern void gfx_fill_rect(int16_t x, int16_t y, int16_t w,  int16_t h, uint8_t r, uint8_t g, uint8_t b, uint8_t ab);
-
 
 #define GFX_BOX_FONT_W 8
 #define GFX_BOX_FONT_H 8

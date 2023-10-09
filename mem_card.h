@@ -15,12 +15,11 @@ typedef struct
     uint32_t num_free_8k_blocks;
 } Memory_Card_Files_Info;
 
-
 #define MEM_CARD_PORT_1 0
 #define MEM_CARD_PORT_2 1
 
 // port -> 0=port_1, 1=port_2
-extern void mem_card_init();
+extern void mem_card_init(void);
 extern bool mem_card_check(uint32_t port);
 extern void mem_card_get_files_info(uint32_t port, Memory_Card_Files_Info *files_info);
 extern bool mem_card_check_file_exists(uint32_t port, uint8_t *filename);
@@ -40,7 +39,5 @@ typedef struct {
     uint8_t clut[32];     // color palette of icon frames (16 RGB5X1 16-bit color entries)
     uint8_t icon[3][128];
 } Memory_Card_Entry_Header;
-
-extern bool save_mem_card_game_entry(uint32_t port, uint8_t last_cleared_level);
 
 #endif /* _MEM_CARD_H */

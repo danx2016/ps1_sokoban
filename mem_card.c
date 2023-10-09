@@ -14,7 +14,7 @@ static const int32_t classes[] = { EvSpIOE, EvSpERROR, EvSpTIMOUT, EvSpNEW };
 
 static int32_t events[2][4];
 
-void mem_card_init()
+void mem_card_init(void)
 {
     // open events related to memory card
     EnterCriticalSection();
@@ -220,41 +220,3 @@ bool mem_card_read_file(uint32_t port, uint8_t *filename, uint8_t *data_buffer, 
     return (fd != -1);
 }
 
-#include "game.h"
-
-bool save_mem_card_game_entry(uint32_t port, uint8_t last_cleared_level)
-{
-    if (mem_card_check(port))
-    {
-        uint8_t file_buffer[GAME_MEM_CARD_FILE_SIZE];
-        Memory_Card_Entry_Header *header = (Memory_Card_Entry_Header*) file_buffer;
-
-        // prepare the header
-        header->magic[0] = 'S'; 
-        header->magic[1] = 'C';  // ID must always say SC
-        header->type = 0x12;     // 2 frame icon
-        header->block_entry = 1; // 1 block
-        
-        strcpy(header->title, "PS1 SOKOBAN DANX2016");
-        
-        uint8_t _clut[32];
-        uint8_t _icon[128];
-
-        // copy icon's CLUT to the header
-        memcpy(header->clut, _clut, 32);
-
-        memcpy(header->icon[0], _icon[0], 128);
-        memcpy(header->icon[1], _icon[1], 128);
-
-        // game_last_cleared_level 
-        file_buffer[sizeof(Memory_Card_Entry_Header) + 0] = last_cleared_level;
-        file_buffer[sizeof(Memory_Card_Entry_Header) + 1] = 0;
-        file_buffer[sizeof(Memory_Card_Entry_Header) + 2] = 0;
-        file_buffer[sizeof(Memory_Card_Entry_Header) + 3] = 0;
-
-        mem_card_write_file(port, GAME_MEM_CARD_FILE_NAME, (uint8_t*) file_buffer, GAME_MEM_CARD_FILE_SIZE);
-
-        return mem_card_check_file_exists(port, GAME_MEM_CARD_FILE_NAME);
-    }
-    return false;
-}

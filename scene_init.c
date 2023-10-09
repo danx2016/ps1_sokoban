@@ -78,7 +78,7 @@ static void yes_no_menu_option_selected(uint32_t selected_item)
 static bool create_mem_card_entry(uint32_t port)
 {
     mem_card_create_file(port, GAME_MEM_CARD_FILE_NAME, 1);
-    return save_mem_card_game_entry(port, 0);
+    return game_save_mem_card_entry(port, 0);
 }
 
 static void which_mc_menu_option_selected(uint32_t selected_item)

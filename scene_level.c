@@ -149,13 +149,13 @@ void scene_level_on_exit(Scene *scene)
             bool mem_card_1_ok = mem_card_check(MEM_CARD_PORT_1);
             if (mem_card_1_ok)
             {
-                mem_card_1_ok = save_mem_card_game_entry(MEM_CARD_PORT_1, game_last_cleared_level);
+                mem_card_1_ok = game_save_mem_card_entry(MEM_CARD_PORT_1, game_last_cleared_level);
             }
 
             if (!mem_card_1_ok) {
                 if (mem_card_check(MEM_CARD_PORT_2))
                 {
-                    save_mem_card_game_entry(MEM_CARD_PORT_2, game_last_cleared_level);
+                    game_save_mem_card_entry(MEM_CARD_PORT_2, game_last_cleared_level);
                 } 
             }
         }
