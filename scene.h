@@ -17,13 +17,13 @@ typedef struct Scene Scene;
 
 struct Scene
 {
-    void (*init)(Scene *scene);
-    void (*on_enter)(Scene *scene);
-    void (*on_exit)(Scene *scene);
-    void (*on_transition_finished)(Scene *scene);
-    void (*fixed_update)(Scene *scene);
-    void (*render_background)(Scene *scene);
-    void (*render)(Scene *scene);
+    void (*init)(void);
+    void (*on_enter)(void);
+    void (*on_exit)(void);
+    void (*on_transition_finished)(void);
+    void (*fixed_update)(void);
+    void (*render_background)(void);
+    void (*render)(void);
 };
 
 extern uint32_t scene_frame_count;

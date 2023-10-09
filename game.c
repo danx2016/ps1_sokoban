@@ -177,7 +177,7 @@ static void load_all_images(void)
     gfx_set_font_box_border_chars(GAME_FONT_BOX_BORDER_CHARS);
 }
 
-static void render_common_background(Scene *scene)
+static void render_common_background()
 {
     static uint32_t frame_count = 0;
     frame_count++;

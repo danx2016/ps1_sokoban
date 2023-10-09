@@ -25,7 +25,6 @@ void* res_load(uint8_t* res_file_name)
     return NULL;
 }
 
-
 static void load_tim_image_to_vram(uint8_t *tim_data, TIM_IMAGE *tim_info)
 {
     OpenTIM((uint32_t*) tim_data);

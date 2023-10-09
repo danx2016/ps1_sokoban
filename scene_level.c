@@ -63,7 +63,7 @@ Scene* scene_level_create(void)
 
 static void level_menu_option_selected(uint32_t selected_item)
 {
-    printf("level menu option selected %d ! \n", selected_item);
+    //printf("level menu option selected %d ! \n", selected_item);
     switch (selected_item)
     {
         case 0:
@@ -75,8 +75,6 @@ static void level_menu_option_selected(uint32_t selected_item)
 
         case 1:
         {
-            //player_anim_offset = 0;
-            //sokoban_reset();
             audio_play_sound(SOUND_ID_START);
             scene_switch_to(SCENE_ID_LEVEL);
             break;
@@ -100,12 +98,12 @@ static void level_menu_option_selected(uint32_t selected_item)
     }
 }
 
-void scene_level_init(Scene *scene)
+void scene_level_init(void)
 {
     level_menu = menu_create(80, 88, 12, 9, level_menu_header, level_menu_footer, level_menu_option_selected, NULL, 4, level_menu_options);
 }
 
-void scene_level_on_enter(Scene *scene)
+void scene_level_on_enter(void)
 {
     menu_clear();
     menu_push(level_menu);
@@ -116,7 +114,7 @@ void scene_level_on_enter(Scene *scene)
     is_scene_activated = false;    
 
     uint8_t level_filename[64];
-    sprintf(level_filename, "\\ASSETS\\LEVELS\\LEVEL%03d.TXT;1", game_current_level);
+    sprintf(level_filename, GAME_RES_LEVEL, game_current_level);
     
     Sokoban_Level *level = res_load_sokoban_level(level_filename);
     sokoban_start(level);
@@ -137,7 +135,7 @@ void scene_level_on_enter(Scene *scene)
     audio_play_music(MUSIC_ID_PLAYING);
 }
 
-void scene_level_on_exit(Scene *scene)
+void scene_level_on_exit(void)
 {
     if (is_level_cleared)
     {
@@ -164,9 +162,9 @@ void scene_level_on_exit(Scene *scene)
     }
 }
 
-void scene_level_on_transition_finished(Scene *scene)
+void scene_level_on_transition_finished(void)
 {
-    printf("transition finished !\n");
+    //printf("transition finished !\n");
     is_scene_activated = true;
 }
 
@@ -225,7 +223,7 @@ static void fixed_update_input()
     //}
 }
 
-void scene_level_fixed_update(Scene *scene)
+void scene_level_fixed_update(void)
 {
     if (!is_scene_activated)
     {
@@ -301,7 +299,7 @@ void scene_level_fixed_update(Scene *scene)
     frames_count++;
 }
 
-void scene_level_render(Scene *scene)
+void scene_level_render(void)
 {
     gfx_use_tileset(1);
     gfx_set_offsets(grid_offset_x, grid_offset_y);
@@ -372,6 +370,7 @@ void scene_level_render(Scene *scene)
     sprintf(hud_moves, "MOVES'%06d", player_moves_count);
     gfx_draw_text(hud_level, 8, 24); 
     gfx_draw_text(hud_moves, 152, 24); 
+
     if (!is_level_menu_activated)
     {
         if (!is_level_cleared)
@@ -382,8 +381,6 @@ void scene_level_render(Scene *scene)
     // options menu
     else
     {
-        //gfx_use_font();
-        //gfx_draw_text("-MENU-", 104, 80); 
         gfx_fill_rect(0, 0, 256, 256, 32, 32, 32, 1);
         menu_render();
     }

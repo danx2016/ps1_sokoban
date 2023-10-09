@@ -46,6 +46,6 @@ extern void sokoban_start(Sokoban_Level *_sokoban);
 extern void sokoban_reset(void);
 extern Sokoban_Move *sokoban_move_start(Sokoban_Move *move, Sokoban_Direction direction);
 extern void sokoban_move_commit(Sokoban_Move *move);
-extern bool sokoban_is_level_cleared();
+extern bool sokoban_is_level_cleared(void);
 
 #endif /* _SOKOBAN_H */

@@ -41,7 +41,7 @@ void scene_init_all()
 {
     for (int i = 0; i <= scene_last_index; i++)
     {
-        scenes[i]->init(scenes[i]);
+        scenes[i]->init();
     }
 }
 
@@ -62,7 +62,7 @@ void scene_fixed_update()
         {
             if (current_scene != NULL)
             {
-                current_scene->fixed_update(current_scene);
+                current_scene->fixed_update();
             }
             break;
         }
@@ -76,10 +76,10 @@ void scene_fixed_update()
                 transition_state = TRANSITION_FADE_OUT;
                 if (current_scene != NULL)
                 {
-                    current_scene->on_exit(current_scene);
+                    current_scene->on_exit();
                 }
                 current_scene = next_scene;
-                current_scene->on_enter(current_scene);
+                current_scene->on_enter();
                 next_scene = NULL;
             }
             break;
@@ -91,7 +91,7 @@ void scene_fixed_update()
             if (fade_value <= 0) {
                 fade_value = 0;
                 transition_state = TRANSITION_FINISHED;
-                current_scene->on_transition_finished(current_scene);
+                current_scene->on_transition_finished();
             }
             break;
         }
@@ -104,10 +104,10 @@ void scene_render()
     {
         if (current_scene->render_background != NULL)
         {
-            current_scene->render_background(current_scene);
+            current_scene->render_background();
         }
 
-        current_scene->render(current_scene);
+        current_scene->render();
         if (transition_state != 0) {
             gfx_use_font(); // workaaround to be able to use sub blend mode
             uint8_t c = (fade_value > 255) ? 255 : (uint8_t) fade_value;

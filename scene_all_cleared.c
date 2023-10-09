@@ -22,26 +22,28 @@ Scene* scene_all_cleared_create(void)
     return scene_all_cleared;
 }
 
-void scene_all_cleared_init(Scene *scene)
+void scene_all_cleared_init(void)
 {
+    // do nothing
 }
 
-void scene_all_cleared_on_enter(Scene *scene)
+void scene_all_cleared_on_enter(void)
 {
     is_scene_activated = false;
     audio_play_music(MUSIC_ID_ALL_LEVELS_CLEARED);
 }
 
-void scene_all_cleared_on_exit(Scene *scene)
+void scene_all_cleared_on_exit(void)
 {
+    // do nothing
 }
 
-void scene_all_cleared_on_transition_finished(Scene *scene)
+void scene_all_cleared_on_transition_finished(void)
 {
     is_scene_activated = true;
 }
 
-void scene_all_cleared_fixed_update(Scene *scene)
+void scene_all_cleared_fixed_update(void)
 {
     if (!is_scene_activated)
     {
@@ -55,7 +57,7 @@ void scene_all_cleared_fixed_update(Scene *scene)
     }
 }
 
-void scene_all_cleared_render(Scene *scene)
+void scene_all_cleared_render(void)
 {
     gfx_use_tileset(1);
     gfx_draw_tile(72, 120, 64);

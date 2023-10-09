@@ -79,7 +79,6 @@ Sokoban_Move *sokoban_move_start(Sokoban_Move *move, Sokoban_Direction direction
         if (is_box_movable)
         {
             set_grid_tile_id(sokoban->player_col + dx, sokoban->player_row + dy, SOKOBAN_TILE_ID_BOX, false);
-            //sokoban_set_grid_tile_id(sokoban->player_col + 2 * dx, sokoban->player_row + 2 * dy, SOKOBAN_TILE_ID_BOX, true);
             move->has_box = true;
             move->box_col = sokoban->player_col + dx;
             move->box_row = sokoban->player_row + dy;
@@ -87,9 +86,6 @@ Sokoban_Move *sokoban_move_start(Sokoban_Move *move, Sokoban_Direction direction
         
         // move player
         set_grid_tile_id(sokoban->player_col, sokoban->player_row, SOKOBAN_TILE_ID_PLAYER, false);
-        //sokoban->player_col += dx;
-        //sokoban->player_row += dy;
-        //sokoban_set_grid_tile_id(sokoban->player_col, sokoban->player_row, SOKOBAN_TILE_ID_PLAYER, true);
         move->player_col = sokoban->player_col;
         move->player_row = sokoban->player_row;
         move->direction = direction;
@@ -121,7 +117,7 @@ void sokoban_move_commit(Sokoban_Move *move)
     set_grid_tile_id(sokoban->player_col, sokoban->player_row, SOKOBAN_TILE_ID_PLAYER, true);
 }
 
-bool sokoban_is_level_cleared()
+bool sokoban_is_level_cleared(void)
 {
     for (int i = 0; i < sokoban->cols * sokoban->cols; i++)
     {

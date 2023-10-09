@@ -33,7 +33,7 @@ Scene* scene_levels_create(void)
 
 static void game_option_selected(uint32_t selected_item)
 {
-    printf("menu option selected %d ! \n", selected_item);
+    //printf("menu option selected %d ! \n", selected_item);
     if (selected_item <= game_last_cleared_level)
     {
         audio_play_sound(SOUND_ID_START);
@@ -44,22 +44,20 @@ static void game_option_selected(uint32_t selected_item)
     {
         audio_play_sound(SOUND_ID_ERROR);
     }
-    
 }
 
-void scene_levels_init(Scene *scene)
+void scene_levels_init(void)
 {
     // "  LEVEL 000"
     for (int i = 0; i < GAME_LAST_LEVEL; i++)
     {
         levels_menu_options[i] = mem_alloc(11);
-        //sprintf(levels_menu_options[i], "[ LEVEL %03d", i + 1);
     }
     levels_menu = menu_create(60, 48, 15, 20, levels_menu_header, levels_menu_footer, game_option_selected, NULL, GAME_LAST_LEVEL, levels_menu_options);
     levels_menu->visible_rows = 10;
 }
 
-void scene_levels_on_enter(Scene *scene)
+void scene_levels_on_enter(void)
 {
     is_activated = false;
 
@@ -81,16 +79,17 @@ void scene_levels_on_enter(Scene *scene)
     levels_menu->visible_top_row = 0;
 }
 
-void scene_levels_on_exit(Scene *scene)
+void scene_levels_on_exit(void)
 {
+    // do nothing
 }
 
-void scene_levels_on_transition_finished(Scene *scene)
+void scene_levels_on_transition_finished(void)
 {
     is_activated = true;
 }
 
-void scene_levels_fixed_update(Scene *scene)
+void scene_levels_fixed_update(void)
 {
     if (!is_activated)
     {
@@ -106,7 +105,7 @@ void scene_levels_fixed_update(Scene *scene)
     menu_fixed_update();
 }
 
-void scene_levels_render(Scene *scene)
+void scene_levels_render(void)
 {
     gfx_use_font();
     gfx_set_offsets(0, 0);

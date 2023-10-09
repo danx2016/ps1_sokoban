@@ -20,6 +20,7 @@ static uint8_t *yes_no_menu_options[] =
     "YES",
     "NO"
 };
+
 static uint8_t *yes_no_header = "";
 static uint8_t *yes_no_footer = "";
 
@@ -30,6 +31,7 @@ static uint8_t *which_mc_menu_options[] =
     "MEMORY CARD 1",
     "MEMORY CARD 2"
 };
+
 static uint8_t *which_mc_header = "";
 static uint8_t *which_mc_footer = "";
 
@@ -107,13 +109,13 @@ static void which_mc_menu_option_selected(uint32_t selected_item)
     mem_card_file_ok = false;
 }
 
-void scene_init_init(Scene *scene)
+void scene_init_init(void)
 {
     yes_no_menu = menu_create(100, 128, 7, 6, yes_no_header, yes_no_footer, yes_no_menu_option_selected, NULL, 2, yes_no_menu_options);
     which_mc_menu = menu_create(60, 128, 17, 6, which_mc_header, which_mc_footer, which_mc_menu_option_selected, NULL, 2, which_mc_menu_options);
 }
 
-void scene_init_on_enter(Scene *scene)
+void scene_init_on_enter(void)
 {
     menu_push(yes_no_menu);
     yes_no_menu->selected_option_index = 0;    
@@ -129,14 +131,14 @@ void scene_init_on_enter(Scene *scene)
     audio_pause_music();
 }
 
-void scene_init_on_exit(Scene *scene)
+void scene_init_on_exit(void)
 {
-    
+    // do nothing
 }
 
-void scene_init_on_transition_finished(Scene *scene)
+void scene_init_on_transition_finished(void)
 {
-    
+    // do nothing
 }
 
 static bool check_mem_card(uint32_t port)
@@ -161,11 +163,12 @@ static bool check_mem_card(uint32_t port)
     return false;
 }
 
-void scene_init_fixed_update(Scene *scene)
+void scene_init_fixed_update(void)
 {
     switch (init_state)
     {
         case 0:
+        {
             is_yes_no_menu_activated = false;
             is_which_mc_menu_activated = false;
 
@@ -177,8 +180,10 @@ void scene_init_fixed_update(Scene *scene)
                 audio_play_sound(SOUND_ID_START);
             }
             break;
+        }
 
         case 1:
+        {
             init_state = 2;
             if (check_mem_card(MEM_CARD_PORT_2))
             {
@@ -192,10 +197,12 @@ void scene_init_fixed_update(Scene *scene)
                 audio_play_sound(SOUND_ID_ERROR);
             }
             break;
+        }
 
         // mem card file not found or not connected 
         // ask player to create game entry
         case 2:
+        {
             // select button cancel
             if (menu_current == which_mc_menu && input_is_action_just_pressed(ACTION_SELECT))
             {
@@ -210,18 +217,21 @@ void scene_init_fixed_update(Scene *scene)
                 menu_fixed_update();
             }
             break;
+        }
 
         // mem card file loaded and ok
         case 3:
+        {
             if (scene_frame_count >= title_time)
             {
                 scene_switch_to(SCENE_ID_TITLE);
             }
             break;
+        }
     }
 }
 
-void scene_init_render(Scene *scene)
+void scene_init_render(void)
 {
     if (init_state < 2)
     {

@@ -34,6 +34,7 @@ static uint8_t *title_menu_options[] =
     "OPTIONS",
     "CREDITS"
 };
+
 static uint8_t *levels_menu_header = "";
 static uint8_t *levels_menu_footer = "";
 
@@ -54,7 +55,7 @@ Scene* scene_title_create(void)
 
 static void game_option_selected(uint32_t selected_item)
 {
-    printf("menu option selected %d ! \n", selected_item);
+    //printf("menu option selected %d ! \n", selected_item);
     switch (selected_item)
     {
         case 0:
@@ -100,12 +101,12 @@ static void game_option_selected(uint32_t selected_item)
     }
 }
 
-void scene_title_init(Scene *scene)
+void scene_title_init(void)
 {
     levels_menu = menu_create(64, 143, 16, 9, levels_menu_header, levels_menu_footer, game_option_selected, NULL, 4, title_menu_options);
 }
 
-void scene_title_on_enter(Scene *scene)
+void scene_title_on_enter(void)
 {
     menu_clear();
     menu_push(levels_menu);
@@ -122,7 +123,6 @@ void scene_title_on_enter(Scene *scene)
     }
     else
     {
-        //strcpy(title_menu_options[0], "CONTINUE");
         sprintf(title_menu_options[0], "CONT.LVL %03d", (game_last_cleared_level + 1));
     }
 
@@ -143,12 +143,12 @@ void scene_title_on_enter(Scene *scene)
     audio_play_music(MUSIC_ID_TITLE);
 }
 
-void scene_title_on_exit(Scene *scene)
+void scene_title_on_exit(void)
 {
     // do nothing    
 }
 
-void scene_title_on_transition_finished(Scene *scene)
+void scene_title_on_transition_finished(void)
 {
     //printf("transition finished !\n");
     is_scene_activated = true;
@@ -208,7 +208,7 @@ static void fixed_update_player()
     }
 }
 
-void scene_title_fixed_update(Scene *scene)
+void scene_title_fixed_update(void)
 {
     if (!is_scene_activated)
     {
@@ -218,23 +218,21 @@ void scene_title_fixed_update(Scene *scene)
     switch (title_state)
     {
         case 0:
+        {
             if (input_is_action_just_pressed(ACTION_START))
             {
                 audio_play_sound(SOUND_ID_DROP);
                 title_state = 1;
             }
             break;
-        
+        }
+
         // update title menu
         case 1:
-            //if (input_is_action_just_pressed(ACTION_SELECT))
-            //{
-            //    audio_play_sound(SOUND_ID_MOVE);
-            //    title_state = 0;
-            //    break;
-            //}
+        {
             menu_fixed_update();
             break;
+        }
     }
 
     // update small player animation
@@ -243,7 +241,7 @@ void scene_title_fixed_update(Scene *scene)
     frames_count++;
 }
 
-void scene_title_render(Scene *scene)
+void scene_title_render(void)
 {
     gfx_use_tileset(0);
     gfx_draw_tile(0, 32, 48);
@@ -251,6 +249,7 @@ void scene_title_render(Scene *scene)
     gfx_use_tileset(1);
     gfx_set_offsets(0, 0);
     gfx_draw_tile(player_tile_id, player_x, player_y);
+
     if (is_player_pushing_box)
     {
         int32_t box_offset_x = player_state == 2 ? -16 : 16;
@@ -262,16 +261,20 @@ void scene_title_render(Scene *scene)
     switch (title_state)
     {
         case 0:
+        {
             if (is_scene_activated && (frames_count % 50) < 30)
             {
                 gfx_draw_text("PUSH START BUTTON", 60, 168);    
             }
             break;
+        }
 
         // render menu
         case 1:
+        {
             menu_render();    
             break;
+        }
     }
 
     gfx_draw_text("@2023 danx2016", 72, 224);

@@ -24,28 +24,28 @@ Scene* scene_credits_create(void)
     return scene_credits;
 }
 
-void scene_credits_init(Scene *scene)
+void scene_credits_init(void)
 {
     // do nothing
 }
 
-void scene_credits_on_enter(Scene *scene)
+void scene_credits_on_enter(void)
 {
     is_activated = false;
     page = 0;
 }
 
-void scene_credits_on_exit(Scene *scene)
+void scene_credits_on_exit(void)
 {
     // do nothing
 }
 
-void scene_credits_on_transition_finished(Scene *scene)
+void scene_credits_on_transition_finished(void)
 {
     is_activated = true;
 }
 
-void scene_credits_fixed_update(Scene *scene)
+void scene_credits_fixed_update(void)
 {
     if (!is_activated)
     {
@@ -70,7 +70,7 @@ void scene_credits_fixed_update(Scene *scene)
     }
 }
 
-void scene_credits_render(Scene *scene)
+void scene_credits_render(void)
 {
     gfx_draw_font_box(20, 44, 27, 21, 64);
     gfx_use_font();

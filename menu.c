@@ -105,7 +105,7 @@ void menu_fixed_update(void)
 
     if (moved)
     {
-        audio_play_sound(6);
+        audio_play_sound(SOUND_ID_DROP);
     }
 
     if (input_is_action_just_pressed(ACTION_START))
