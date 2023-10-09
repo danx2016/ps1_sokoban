@@ -23,12 +23,13 @@ static uint8_t *game_options[] =
     "MUSIC VOLUME'<5>",
     "  SFX VOLUME'<5>"
 };
+
 static uint8_t *game_options_header = "";
 static uint8_t *game_options_footer = "SELECT>BACK";
 
 static void game_option_selected(uint32_t selected_item)
 {
-    printf("game option selected %d ! \n", selected_item);
+    //printf("game option selected %d ! \n", selected_item);
     switch (selected_item)
     {
         case 0:
@@ -39,7 +40,7 @@ static void game_option_selected(uint32_t selected_item)
     }
 }
 
-static void game_option_fixed_update()
+static void game_option_fixed_update(void)
 {
     bool changed = false;
     bool error = false;
@@ -128,7 +129,7 @@ void game_start_level()
     }
 }
 
-static void load_audio_resources()
+static void load_audio_resources(void)
 {
     // load all musics & sound effects
     uint8_t *music_title_data = res_load(GAME_MUSIC_TITLE);
@@ -144,7 +145,7 @@ static void load_audio_resources()
     audio_add_music(MUSIC_ID_ALL_LEVELS_CLEARED, music_all_cleared_data);   
 }
 
-static void init_all()
+static void init_all(void)
 {
     mem_init();
     res_init();
@@ -159,7 +160,7 @@ static void init_all()
     game_init();
 }
 
-static void load_all_images()
+static void load_all_images(void)
 {
     GFX_TIM_Info *title = res_load_tim_image(GAME_RES_TITLE_IMAGE);
     gfx_add_tileset(0, title, 1, 1);
@@ -191,7 +192,7 @@ static void render_common_background(Scene *scene)
     }
 }
 
-static void init_all_scenes()
+static void init_all_scenes(void)
 {
     Scene *scene_init = scene_init_create();
     scene_init->render_background = render_common_background;
@@ -221,7 +222,7 @@ static void init_all_scenes()
     scene_init_all();
 }
 
-void game_entry_point()
+void game_entry_point(void)
 {
     init_all();
     load_all_images();

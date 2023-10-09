@@ -23,7 +23,7 @@ static bool is_music_stopped;
 static uint32_t bpm_time;
 
 // invoked every ~0.015 secs
-int32_t audio_play_next_sample()
+int32_t audio_play_next_sample(void)
 {
     if (is_music_paused || is_music_stopped)
     {
@@ -48,7 +48,7 @@ int32_t audio_play_next_sample()
     return 1;
 }
 
-void audio_init()
+void audio_init(void)
 {
     MOD_Silence();
 
@@ -73,7 +73,7 @@ void audio_add_music(size_t music_id, uint8_t *music_data)
     musics_data[music_id] = music_data;
 }
 
-void audio_stop_music()
+void audio_stop_music(void)
 {
     if (!is_music_stopped)
     {
@@ -83,12 +83,12 @@ void audio_stop_music()
     }
 }
 
-void audio_pause_music()
+void audio_pause_music(void)
 {
     is_music_paused = true;
 }
 
-void audio_resume_music()
+void audio_resume_music(void)
 {
     is_music_paused = false;
 }

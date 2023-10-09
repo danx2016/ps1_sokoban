@@ -21,17 +21,15 @@
 #define GAME_MUSIC_VICTORY "\\ASSETS\\MUSICS\\RAD_VICT.HIT;1"   
 #define GAME_MUSIC_ALL_CLEARED "\\ASSETS\\MUSICS\\PEPPY.HIT;1"   
 
-
 extern Menu *game_options_menu;
 
-extern void game_init();
-
+extern void game_init(void);
 
 extern int32_t game_last_cleared_level;
 extern int32_t game_current_level;
 
-extern void game_start_level();
+extern void game_start_level(void);
 
-extern void game_entry_point();
+extern void game_entry_point(void);
 
 #endif /* _GAME_H */
