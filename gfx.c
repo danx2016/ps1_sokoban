@@ -176,7 +176,7 @@ void gfx_set_font(GFX_TIM_Info *font, uint8_t cols, uint8_t rows, uint8_t width,
     }
 }
 
-void gfx_use_font()
+void gfx_use_font(void)
 {
     DR_TPAGE* tpage = (DR_TPAGE*) next_primitive;
     uint16_t tp = getTPage(font_img->mode & 3, 2, font_img->prect.x, font_img->prect.y);
