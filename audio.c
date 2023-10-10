@@ -39,7 +39,7 @@ int32_t audio_play_next_sample(void)
         
         //printf("audio order=%d song_length=%d row=%d \n", MOD_CurrentOrder, MOD_SongLength, MOD_CurrentRow);
 
-        // TODO: needs to revisit this condition later
+        // TODO: needs to check this condition later again
         if (!is_music_looped && MOD_CurrentRow >= 63 && MOD_CurrentOrder >= MOD_SongLength - 1)
         {
             audio_stop_music();

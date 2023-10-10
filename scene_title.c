@@ -68,7 +68,7 @@ static void game_option_selected(uint32_t selected_item)
             {
                 scene_switch_to(SCENE_ID_ALL_CLEARED);
             }
-            // goto to level 
+            // go to level 
             else 
             {
                 scene_switch_to(SCENE_ID_LEVEL);

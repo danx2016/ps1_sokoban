@@ -48,7 +48,6 @@ static void game_option_selected(uint32_t selected_item)
 
 void scene_levels_init(void)
 {
-    // "  LEVEL 000"
     for (int i = 0; i < GAME_LAST_LEVEL; i++)
     {
         levels_menu_options[i] = mem_alloc(11);

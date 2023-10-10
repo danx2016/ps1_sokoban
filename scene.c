@@ -48,7 +48,7 @@ void scene_init_all()
 void scene_switch_to(size_t scene_id)
 {
     next_scene = scenes[scene_id];
-    transition_state = 1;
+    transition_state = TRANSITION_FADE_IN;
     fade_value = 0;
 }
 
@@ -108,7 +108,7 @@ void scene_render()
         }
 
         current_scene->render();
-        if (transition_state != 0) {
+        if (transition_state != TRANSITION_FINISHED) {
             gfx_use_font(); // workaaround to be able to use sub blend mode
             uint8_t c = (fade_value > 255) ? 255 : (uint8_t) fade_value;
             gfx_fill_rect(0, 0, 256, 256, c, c, c, 2);
