@@ -93,6 +93,7 @@
             -->
             <dir name="ASSETS">
                 <dir name="IMAGES">
+                    <file name="MC_ICON.TIM" type="data" source="assets/images/MC_ICON.TIM"/>
                     <file name="TITLE.TIM" type="data" source="assets/images/TITLE.TIM"/>
                     <file name="SOKOBAN.TIM" type="data" source="assets/images/SOKOBAN.TIM"/>
                     <file name="FONT8X8.TIM" type="data" source="assets/images/FONT8X8.TIM"/>

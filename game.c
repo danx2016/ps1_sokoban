@@ -29,6 +29,8 @@ static uint8_t *game_options[] =
 static uint8_t *game_options_header = "";
 static uint8_t *game_options_footer = "SELECT>BACK";
 
+static TIM_IMAGE game_mem_card_icon;
+
 static void game_option_selected(uint32_t selected_item)
 {
     //printf("game option selected %d ! \n", selected_item);
@@ -164,6 +166,10 @@ static void init_all(void)
 
 static void load_all_images(void)
 {
+    uint8_t *mc_icon_data = res_load(GAME_RES_MC_ICON_IMAGE);
+    OpenTIM((uint32_t*) mc_icon_data);
+    ReadTIM(&game_mem_card_icon);
+
     GFX_TIM_Info *title = res_load_tim_image(GAME_RES_TITLE_IMAGE);
     gfx_add_tileset(0, title, 1, 1);
 
@@ -253,19 +259,14 @@ bool game_save_mem_card_entry(uint32_t port, uint8_t last_cleared_level)
         // prepare the header
         header->magic[0] = 'S'; 
         header->magic[1] = 'C';  // ID must always say SC
-        header->type = 0x12;     // 2 frame icon
+        header->type = 0x11;     // 1 frame icon
         header->block_entry = 1; // 1 block
         
         strcpy(header->title, GAME_MEMORY_CARD_ENTRY_TITLE);
         
-        uint8_t _clut[32];
-        uint8_t _icon[128];
-
-        // copy icon's CLUT to the header
-        memcpy(header->clut, _clut, 32);
-
-        memcpy(header->icon[0], _icon[0], 128);
-        memcpy(header->icon[1], _icon[1], 128);
+        // copy icon's image and CLUT to the header
+        memcpy(header->icon[0], game_mem_card_icon.paddr, 128);
+        memcpy(header->clut, game_mem_card_icon.caddr, 32);
 
         // game_last_cleared_level 
         file_buffer[sizeof(Memory_Card_Entry_Header) + 0] = last_cleared_level;
