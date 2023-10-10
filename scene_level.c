@@ -132,7 +132,7 @@ void scene_level_on_enter(void)
 
     debug_level_cleared = false;
 
-    audio_play_music(MUSIC_ID_PLAYING);
+    audio_play_music(MUSIC_ID_PLAYING, true);
 }
 
 void scene_level_on_exit(void)
@@ -274,7 +274,7 @@ void scene_level_fixed_update(void)
                 is_level_cleared = true;
                 next_level_time = 0;
                 player_anim_offset = 0;
-                audio_play_music(MUSIC_ID_LEVEL_CLEARED);
+                audio_play_music(MUSIC_ID_LEVEL_CLEARED, false);
             }
         }
     }    

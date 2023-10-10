@@ -30,7 +30,7 @@ void scene_all_cleared_init(void)
 void scene_all_cleared_on_enter(void)
 {
     is_scene_activated = false;
-    audio_play_music(MUSIC_ID_ALL_LEVELS_CLEARED);
+    audio_play_music(MUSIC_ID_ALL_LEVELS_CLEARED, true);
 }
 
 void scene_all_cleared_on_exit(void)

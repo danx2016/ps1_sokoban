@@ -14,6 +14,7 @@ static uint8_t *musics_data[MUSICS_NUM];
 
 static uint32_t current_music_id = -1;
 
+static bool is_music_looped;
 static bool is_music_paused;
 static bool is_music_stopped;
 
@@ -35,14 +36,14 @@ int32_t audio_play_next_sample(void)
     {
         bpm_time -= MOD_BPM * BPM_TIME_CONV;
         MOD_Poll();
-        //printf("audio order=%d pattern=%d row=%d\n", MOD_CurrentOrder, MOD_CurrentPattern, MOD_CurrentRow);
+        
+        //printf("audio order=%d song_length=%d row=%d \n", MOD_CurrentOrder, MOD_SongLength, MOD_CurrentRow);
 
-        // TODO: workaround to play music once (hardcoded for now)
-        if (current_music_id == MUSIC_ID_LEVEL_CLEARED && MOD_CurrentRow == 63)
+        // TODO: needs to revisit this condition later
+        if (!is_music_looped && MOD_CurrentRow >= 63 && MOD_CurrentOrder >= MOD_SongLength - 1)
         {
             audio_stop_music();
         }
-
     }
     
     return 1;
@@ -93,7 +94,7 @@ void audio_resume_music(void)
     is_music_paused = false;
 }
 
-void audio_play_music(uint8_t music_id)
+void audio_play_music(uint8_t music_id, bool loop)
 {
     if (current_music_id == music_id)
     {
@@ -102,6 +103,7 @@ void audio_play_music(uint8_t music_id)
 
     current_music_id = music_id;
 
+    is_music_looped = loop;
     is_music_paused = false;
 
     // avoid call MOD_Poll() while changing music data,

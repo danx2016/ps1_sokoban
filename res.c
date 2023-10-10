@@ -1,3 +1,4 @@
+#include <libapi.h>
 #include <libcd.h>
 
 #include "mem.h"
@@ -6,7 +7,8 @@
 
 void res_init(void)
 {
-    int32_t r = CdInit();
+    _96_remove();
+    while (!CdInit());
 }
 
 void* res_load(uint8_t* res_file_name)
@@ -74,42 +76,58 @@ Sokoban_Level *res_load_sokoban_level(uint8_t *filename)
         switch (*next_tile++)
         {
             case ' ':
+            {
                 level->grid[index++] = SOKOBAN_TILE_ID_EMPTY;
                 break;
+            }
 
             case '.':
+            {
                 level->grid[index++] = SOKOBAN_TILE_ID_TARGET;
                 break;
+            }
 
             case '+':
+            {
                 level->grid[index] = SOKOBAN_TILE_ID_PLAYER | SOKOBAN_TILE_ID_TARGET;
                 level->player_col = index % cols;
                 level->player_row = index / cols;
                 index++;
                 break;
+            }
 
             case '$':
+            {
                 level->grid[index++] = SOKOBAN_TILE_ID_BOX;
                 break;
+            }
 
             case '#':
+            {
                 level->grid[index++] = SOKOBAN_TILE_ID_WALL;
                 break;
+            }
 
-            case '*': 
+            case '*':
+            {
                 level->grid[index++] = SOKOBAN_TILE_ID_BOX | SOKOBAN_TILE_ID_TARGET; 
                 break;
+            }
 
             case '@': 
+            {
                 level->grid[index] = SOKOBAN_TILE_ID_PLAYER; 
                 level->player_col = index % cols;
                 level->player_row = index / cols;
                 index++;
                 break;
+            }
 
             case '_': 
+            {
                 level->grid[index++] = SOKOBAN_TILE_ID_IGNORE;
                 break;
+            }
         }
     }
     return level;

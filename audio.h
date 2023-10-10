@@ -2,6 +2,7 @@
 #define _AUDIO_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define SOUND_START_CHANNEL 10
 
@@ -24,7 +25,7 @@ extern int32_t audio_sfx_volume;
 
 extern void audio_init(void);
 extern void audio_add_music(size_t music_id, uint8_t *music_data);
-extern void audio_play_music(uint8_t music_id);
+extern void audio_play_music(uint8_t music_id, bool loop);
 extern void audio_stop_music(void);
 extern void audio_pause_music(void);
 extern void audio_resume_music(void);

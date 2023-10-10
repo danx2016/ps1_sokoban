@@ -140,7 +140,7 @@ void scene_title_on_enter(void)
     srand(VSync(-1));
     title_state = 0;
 
-    audio_play_music(MUSIC_ID_TITLE);
+    audio_play_music(MUSIC_ID_TITLE, true);
 }
 
 void scene_title_on_exit(void)
@@ -168,13 +168,16 @@ static void fixed_update_player()
     switch (player_state)
     {
         case 0:
+        {
             if (player_anim_frame > 300)
             {
                 player_state = 1;
             }
             break;
+        }
 
         case 1:
+        {
             player_y++;
             if (player_y >= 200)
             {
@@ -184,8 +187,10 @@ static void fixed_update_player()
                 box_tile_id = (rand() % 5) + 1;
             }
             break;
+        }
 
         case 2:
+        {
             player_x--;
             if (player_x < -64)
             {
@@ -195,8 +200,10 @@ static void fixed_update_player()
                 box_tile_id = (rand() % 5) + 1;
             }
             break;
+        }
 
         case 3:
+        {
             player_x++;
             if (player_x > 288)
             {
@@ -205,6 +212,7 @@ static void fixed_update_player()
                 box_tile_id = (rand() % 5) + 1;
             }
             break;
+        }
     }
 }
 

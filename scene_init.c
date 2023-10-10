@@ -127,7 +127,7 @@ void scene_init_on_enter(void)
     init_state = 0;
     mem_card_file_ok = false;
 
-    audio_play_music(MUSIC_ID_ALL_LEVELS_CLEARED);
+    audio_play_music(MUSIC_ID_ALL_LEVELS_CLEARED, true);
     audio_pause_music();
 }
 
