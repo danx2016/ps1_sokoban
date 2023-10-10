@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <libetc.h>
 
 #include "res.h"
 #include "gfx.h"
@@ -38,6 +39,7 @@ static uint8_t *level_menu_options[] =
     "OPTIONS",
     "QUIT"
 };
+
 static uint8_t *level_menu_header = "   -MENU-";
 static uint8_t *level_menu_footer = "";
 
@@ -214,7 +216,7 @@ static void fixed_update_input()
         audio_play_sound(SOUND_ID_DROP);
     }
 
-    // fot debugging purposes
+    // for debugging purposes
     //else if (input_is_action_just_pressed(ACTION_SELECT))
     //{
     //    debug_level_cleared = true;
@@ -255,8 +257,10 @@ void scene_level_fixed_update(void)
         player_moving_rate++;
         if (player_moving_rate >= 16)
         {
-            // if box is pushed to target, play sound
+            is_player_moving = false;
             sokoban_move_commit(&player_move);
+
+            // if box is pushed to target, play sound
             if (player_move.has_box)
             {
                 uint32_t tile_id = sokoban->grid[player_move.box_row * sokoban->cols + player_move.box_col];
@@ -266,14 +270,13 @@ void scene_level_fixed_update(void)
                 }
             }
 
-            is_player_moving = false;
-
             if (debug_level_cleared || sokoban_is_level_cleared())
             {
                 // printf("level cleared :) !\n");
                 is_level_cleared = true;
                 next_level_time = 0;
                 player_anim_offset = 0;
+                VSync(16);
                 audio_play_music(MUSIC_ID_LEVEL_CLEARED, false);
             }
         }
