@@ -3,30 +3,16 @@
 #include "mem.h"
 #include "sokoban.h"
 
-static Sokoban_Level *sokoban_template = NULL;
 Sokoban_Level *sokoban = NULL;
 
 void sokoban_start(Sokoban_Level *_sokoban)
 {
-    if (sokoban_template != NULL)
-    {
-        mem_free(sokoban_template);
-    }
-
     if (sokoban != NULL)
     {
         mem_free(sokoban);
     }
 
-    sokoban_template = _sokoban;
-    sokoban = mem_alloc(sizeof(Sokoban_Level) + (_sokoban->cols * _sokoban->rows));
-    sokoban_reset();
-}
-
-void sokoban_reset(void)
-{
-    size_t size = sizeof(Sokoban_Level) + (sokoban_template->cols * sokoban_template->rows);
-    memcpy(sokoban, sokoban_template, size);
+    sokoban = _sokoban;
 }
 
 static uint8_t get_grid_tile_id(size_t col, size_t row)

@@ -130,5 +130,9 @@ Sokoban_Level *res_load_sokoban_level(uint8_t *filename)
             }
         }
     }
+    
+    // after converting the level, level_data can be freed 
+    mem_free(level_data);
+
     return level;
 }
