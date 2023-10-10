@@ -5,7 +5,7 @@ Sokoban game implementation for PS1 using MIPS toolchain + Nugget + Psy-Q Dev Ki
 
 ## Binary CD BIN/CUE ##
 
-* You can download the latest binary CD BIN/CUE here: https://github.com/danx2016/ps1_sokoban/releases/tag/v0.0.2
+* You can download the latest binary CD BIN/CUE here: https://github.com/danx2016/ps1_sokoban/releases/tag/v0.0.3
 
 
 ## How to Build ##
