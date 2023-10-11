@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <libapi.h>
 #include <libcd.h>
 
@@ -11,8 +12,13 @@ void res_init(void)
     while (!CdInit());
 }
 
+#define log(msg, arg) printf(msg, arg)
+// #define log(msg, arg)
+
 void* res_load(uint8_t* res_file_name)
 {
+    log("===> loading resource %s .. ", res_file_name);
+    
     CdlFILE file;
     uint8_t result;
     if (CdSearchFile(&file, res_file_name))
@@ -22,8 +28,14 @@ void* res_load(uint8_t* res_file_name)
         CdControl(CdlSetloc, (uint8_t*) &file.pos, &result);
         CdRead(sectors_count, (uint32_t*) res_buffer, CdlModeSpeed);
         CdReadSync(0, &result);
+    
+        log("OK\n", 0);
+    
         return res_buffer; 
     }
+    
+    log("ERROR!\n", 0);
+
     return NULL;
 }
 
