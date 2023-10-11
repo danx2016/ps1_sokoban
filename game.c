@@ -149,18 +149,36 @@ static void load_audio_resources(void)
     audio_add_music(MUSIC_ID_ALL_LEVELS_CLEARED, music_all_cleared_data);   
 }
 
+#define log(msg) printf(msg)
+// #define log(msg)
+
 static void init_all(void)
 {
+    log("===> initializing all..\n");
+
+    log("===> initializing memory manager..\n");
     mem_init();
+
+    log("===> initializing CD resources loader..\n");
     res_init();
+
+    log("===> initializing graphics..\n");
     gfx_init();
+
+    log("===> initializing controller input..\n");
     input_init();
 
     // note: loading musics after audio_init() does not work, not sure why :(
+    log("===> loading all audio resources..\n");
     load_audio_resources();
+
+    log("===> initializing audio..\n");
     audio_init();
         
+    log("===> initializing memory card..\n");
     mem_card_init();
+
+    log("===> initializing game..\n");
     game_init();
 }
 
