@@ -60,7 +60,7 @@ void scene_credits_fixed_update(void)
     else if (input_is_action_just_pressed(ACTION_DOWN))
     {
         page++;
-        if (page > 1) page = 1;
+        if (page > 2) page = 2;
     }
 
     if (input_is_action_just_pressed(ACTION_SELECT))
@@ -78,8 +78,8 @@ void scene_credits_render(void)
 
     gfx_draw_text("-CREDITS-", 92, 32); 
 
-    uint8_t page_str[3] = "_/2";
-    sprintf(page_str, "%d/2", (page + 1));
+    uint8_t page_str[3] = "_/3";
+    sprintf(page_str, "%d/3", (page + 1));
     gfx_draw_text(page_str, 208, 32); 
 
     if (page == 0)
@@ -119,8 +119,25 @@ void scene_credits_render(void)
         gfx_draw_text(" by krumel {crumb}#0723", offset_x, offset_y); offset_y += 8;
         gfx_draw_text(" github.com/DeerTears/", offset_x, offset_y); offset_y += 8;
         gfx_draw_text("    GB-Studio-Community-", offset_x, offset_y); offset_y += 8;
-        gfx_draw_text("       Assets", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text("       Assets", offset_x, offset_y); offset_y += 16;
+
+        gfx_draw_text("SOUND EFFECTS", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text(" \"Interface Sounds\"", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text(" by Kenny", offset_x, offset_y); offset_y += 16;
+    }
+    else if (page == 2)
+    {
+        const uint16_t offset_x = 28;
+        uint16_t offset_y = 56;
+        gfx_draw_text("SPECIAL THANKS TO", offset_x, offset_y); offset_y += 16;
+        gfx_draw_text("-Nicolas Noble", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text("-spicyjpeg", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text("-Stenzek", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text("-Kamil", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text("-rama", offset_x, offset_y); offset_y += 16;
+        gfx_draw_text("-and all nice people from", offset_x, offset_y); offset_y += 24;
+        gfx_draw_text("         PSX.DEV", offset_x, offset_y); offset_y += 8;
     }
 
-    gfx_draw_text("SELECT>BACK        ;:NEXT/PREV", 8, 216);
+    gfx_draw_text("SELECT>BACK        :;NEXT/PREV", 8, 216);
 }

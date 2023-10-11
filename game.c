@@ -236,7 +236,7 @@ void game_entry_point(void)
     load_all_images();
     init_all_scenes();
 
-    // start game with title scene
+    // start game with 'init scene'
     scene_switch_to(SCENE_ID_INIT);
 
     // game loop

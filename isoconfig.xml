@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!-- MKPSXISO example XML script -->
 
 <!-- <iso_project>
@@ -13,7 +11,7 @@
         cue_sheet   - Optional, file name of the cue sheet for the image file
                       (required if more than one track is specified).
 -->
-<iso_project image_name="ps1_sokoban.bin" cue_sheet="ps1_sokoban.cue">
+<iso_project image_name="sokoban.bin" cue_sheet="sokoban.cue">
 
     <!-- <track>
             Specifies a track to the ISO project. This example element creates a data
@@ -30,28 +28,6 @@
     -->
     <track type="data">
     
-        <!-- <identifiers>
-                Optional, Specifies the identifier strings to use for the data track.
-                
-            Attributes:
-                system          - Optional, specifies the system identifier (PLAYSTATION if unspecified).
-                application     - Optional, specifies the application identifier (PLAYSTATION if unspecified).
-                volume          - Optional, specifies the volume identifier.
-                volume_set      - Optional, specifies the volume set identifier.
-                publisher       - Optional, specifies the publisher identifier.
-                data_preparer   - Optional, specifies the data preparer identifier. If unspecified, MKPSXISO
-                                  will fill it with lengthy text telling that the image file was generated
-                                  using MKPSXISO.
-        -->
-        <identifiers
-            system          ="PLAYSTATION"
-            application     ="PLAYSTATION"
-            volume          ="ps1_sokoban"
-            volume_set      ="ps1_sokoban"
-            publisher       ="danx2016"
-            data_preparer   ="MKPSXISO"
-        />
-        
         <!-- <license>
                 Optional, specifies the license file to use, the format of the license file must be in
                 raw 2336 byte sector format, like the ones included with the PsyQ SDK in psyq\cdgen\LCNSFILE.
@@ -92,7 +68,7 @@
                     will be inside the specified directory.
             -->
             <dir name="ASSETS">
-                <dir name="IMAGES">
+                <dir name="IMAGES" source="ASSETS/IMAGES">
                     <file name="MC_ICON.TIM" type="data" source="assets/images/MC_ICON.TIM"/>
                     <file name="TITLE.TIM" type="data" source="assets/images/TITLE.TIM"/>
                     <file name="SOKOBAN.TIM" type="data" source="assets/images/SOKOBAN.TIM"/>
@@ -124,7 +100,7 @@
 
         </directory_tree>
         
+        <dummy sectors="1024"/>
+
     </track>
-    
-    <dummy sectors="1024"/>
 </iso_project>
