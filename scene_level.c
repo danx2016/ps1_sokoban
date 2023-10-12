@@ -217,12 +217,14 @@ static void fixed_update_input()
     }
 
     // for debugging purposes
-    //else if (input_is_action_just_pressed(ACTION_SELECT))
-    //{
-    //    debug_level_cleared = true;
-    //    is_player_moving = true;
-    //    player_moving_rate = 16;
-    //}
+    /*
+    else if (input_is_action_just_pressed(ACTION_SELECT))
+    {
+        debug_level_cleared = true;
+        is_player_moving = true;
+        player_moving_rate = 16;
+    }
+    */
 }
 
 void scene_level_fixed_update(void)

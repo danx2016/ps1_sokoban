@@ -60,13 +60,13 @@ void scene_all_cleared_fixed_update(void)
 void scene_all_cleared_render(void)
 {
     gfx_use_tileset(1);
-    gfx_draw_tile(72, 120, 64);
+    gfx_draw_tile(72, 120, 64 + ((scene_frame_count >> 4) & 1));
 
     gfx_draw_font_box(36, 76, 23, 11, 64);
     gfx_use_font();
     gfx_draw_text("ALL AVAILABLE LEVELS", 48, 96); 
     gfx_draw_text(" HAVE BEEN CLEARED!", 48, 112); 
-    gfx_draw_text(" CONGRATULATIONS :}", 48, 136);     
+    gfx_draw_text(" CONGRATULATIONS =}", 48, 136);     
 
-    gfx_draw_text("SELECT>TITLE", 124, 164);
+    gfx_draw_text("SELECT>TITLE", 8, 216);
 }

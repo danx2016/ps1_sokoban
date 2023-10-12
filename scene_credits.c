@@ -136,7 +136,7 @@ void scene_credits_render(void)
         gfx_draw_text("-Kamil", offset_x, offset_y); offset_y += 8;
         gfx_draw_text("-rama", offset_x, offset_y); offset_y += 16;
         gfx_draw_text("-and all nice people from", offset_x, offset_y); offset_y += 24;
-        gfx_draw_text("         PSX.DEV", offset_x, offset_y); offset_y += 8;
+        gfx_draw_text("         PSX.Dev", offset_x, offset_y); offset_y += 8;
     }
 
     gfx_draw_text("SELECT>BACK        :;NEXT/PREV", 8, 216);
